@@ -1,0 +1,12 @@
+/* Estilo personalizado para la navbar */
+.navbar-custom {
+  background-color: #333; /* Fondo oscuro */
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: white; /* Color de los enlaces */
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+  color: #FFD700; /* Color dorado al pasar el ratón por encima */
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Dashboard - Data Science</title>
+
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Navbar Custom Styles */
+        .navbar-custom {
+            background-color: #2c3e50;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #ecf0f1;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #f39c12;
+        }
+
+        /* Card Styles */
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Section Titles */
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Custom Button */
+        .btn-custom {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container px-5">
+            <a class="navbar-brand" href="#page-top">DataScience Dash</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" 
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'analista' %}">Analistas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Proveedores' %}">Proveedores</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container-fluid bg-primary text-white py-5" id="hero">
+        <div class="container text-center">
+            <h1>Análisis de datos RQ</h1>
+            <p class="lead">Visualiza, analiza y gestiona tus datos con facilidad</p>
+            <a href="#stats" class="btn btn-custom btn-lg">Explorar Dashboard</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="container py-5">
+        <h2 class="text-center mb-4">Estadísticas Clave</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card p-3 text-center">
+                    <i class="fas fa-users fa-3x text-primary"></i>
+                    <h3>Usuarios Activos</h3>
+                    <p class="lead">1,234</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 text-center">
+                    <i class="fas fa-chart-line fa-3x text-success"></i>
+                    <h3>Ingresos</h3>
+                    <p class="lead">$12,345</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 text-center">
+                    <i class="fas fa-cogs fa-3x text-warning"></i>
+                    <h3>Proyectos en Curso</h3>
+                    <p class="lead">75</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 text-center">
+                    <i class="fas fa-chart-pie fa-3x text-danger"></i>
+                    <h3>Tasa de Conversión</h3>
+                    <p class="lead">3.5%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Graph Section (Example Placeholder for Chart) -->
+    <section id="graphs" class="container py-5">
+        <h2 class="text-center mb-4">Gráficos de Tendencia</h2>
+        <div class="card p-3">
+            <div class="card-body">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 DataScience Dash. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Example Chart.js for Trend Graph
+        var ctx = document.getElementById('trendChart').getContext('2d');
+        var trendChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Ventas Mensuales',
+                    data: [150, 200, 250, 300, 350, 400],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    tension: 0.1
+                }]
+            }
+        });
+    </script>
+
+</body>
+
+</html>
