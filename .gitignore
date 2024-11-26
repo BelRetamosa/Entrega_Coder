@@ -1,0 +1,20 @@
+# Archivos de compilación de Python
+*.pyc
+__pycache__/
+
+# Archivos de base de datos de Django
+db.sqlite3
+
+# Archivos de entornos virtuales
+venv/
+.venv/
+
+# Archivos de configuración sensibles
+*.env
+
+# Archivos de log
+*.log
+*.pot
+
+# Archivos temporales de editor
+*.swp
